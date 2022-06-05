@@ -32,7 +32,7 @@ db.getConnection((err, connection) => {
   console.log("DataBase connection successful: " + connection.threadId);
 });
 
-// hashing passwords
+// hashing passwords,signUp users
 app.post("/signUp", async (req, res) => {
   const { userName, firstName, lastName, password, email } = req.body;
   const hashPassword = await bcrypt.hash(password, 10);
@@ -68,6 +68,36 @@ app.post("/signUp", async (req, res) => {
           console.log(result.insertId);
           res.send("New User Created");
         });
+      }
+    });
+  });
+});
+
+// log in users
+
+app.post("/login", (req, res) => {
+  const { userName, password } = req.body;
+
+  db.getConnection(async (err, connection) => {
+    if (err) throw err;
+    const sqlSearch = "SELECT * FROM userInfo WHERE userName=?";
+    const serach_query = mysql.format(sqlSearch, [userName]);
+
+    connection.query(serach_query, async (err, result) => {
+      connection.release();
+      if (err) throw err;
+      if (result.length == 0) {
+        console.log("---User does not exist---");
+        res.send("User does not exist");
+      } else {
+        const hashPassword = result[0].password;
+        if (await bcrypt.compare(password, hashPassword)) {
+          console.log("---Log In Successfull");
+          res.send(`${userName} logged in successfully`);
+        } else {
+          console.log("---Password Incorrect----");
+          res.send("Password Incorrect");
+        }
       }
     });
   });
