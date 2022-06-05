@@ -1,7 +1,12 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
+const bcrypt = require("bcrypt");
+
 require("dotenv").config();
+
+// middleware setup
+app.use(express.json());
 
 // getting info from env
 const db_host = process.env.DB_HOST;
@@ -9,6 +14,7 @@ const db_user = process.env.DB_USER;
 const db_password = process.env.DB_PASSWORD;
 const db_database = process.env.DB_DATABASE;
 const db_port = process.env.DB_PORT;
+const port = process.env.PORT;
 
 const db = mysql.createPool({
   connectionLimit: 100,
@@ -24,4 +30,49 @@ db.getConnection((err, connection) => {
     throw err;
   }
   console.log("DataBase connection successful: " + connection.threadId);
+});
+
+// hashing passwords
+app.post("/signUp", async (req, res) => {
+  const { userName, firstName, lastName, password, email } = req.body;
+  const hashPassword = await bcrypt.hash(password, 10);
+
+  db.getConnection(async (err, connection) => {
+    if (err) {
+      throw err;
+    }
+    const sqlSearch = "SELECT * FROM userInfo WHERE userName = ?";
+    const search_query = mysql.format(sqlSearch, [userName]);
+    const sqlInsert = "INSERT INTO userInfo VALUES (0,?,?,?,?,?)";
+    const insert_query = mysql.format(sqlInsert, [
+      userName,
+      firstName,
+      lastName,
+      hashPassword,
+      email,
+    ]);
+
+    await connection.query(search_query, async (err, result) => {
+      if (err) throw err;
+      console.log("---Search Results---");
+      console.log(result.length);
+
+      if (result.length != 0) {
+        connection.release();
+        console.log("---User Already Exists---");
+        res.send("User Already Exists");
+      } else {
+        await connection.query(insert_query, (err, result) => {
+          if (err) throw err;
+          console.log("---New User Created---");
+          console.log(result.insertId);
+          res.send("New User Created");
+        });
+      }
+    });
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Server Started On Port ${port}`);
 });
