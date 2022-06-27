@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* choosing design */
+
+.choosing--main {
+  background-color: rgb(211, 211, 211);
+  width: 70%;
+  height: 500px;
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  margin: 110px auto;
+  border: solid 2px #000;
+  border-radius: 10px;
+}
+.choosing--banner {
+  width: 40%;
+  padding: 20px;
+  text-align: center;
+  margin: 100px auto;
+}
+.choosing--logo {
+  width: 180px;
+  margin-top: 20px;
+}
+.choosing--buttons {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  border-left: 2px solid #000;
+}
+.choosing--buttons > button {
+  margin: 10px;
+  width: 50%;
+  height: 55px;
+  border-radius: 5px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 2px 5px #999;
+}
+.choosing--buttonlogo {
+  width: 55px;
+  /* margin-left: 20px; */
+}

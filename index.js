@@ -54,7 +54,7 @@ app.post("/signUp", async (req, res) => {
       email,
     ]);
 
-    await connection.query(search_query, async (err, result) => {
+    connection.query(search_query, async (err, result) => {
       if (err) throw err;
       console.log("---Search Results---");
       console.log(result.length);
@@ -64,7 +64,7 @@ app.post("/signUp", async (req, res) => {
         console.log("---User Already Exists---");
         res.send("User Already Exists");
       } else {
-        await connection.query(insert_query, (err, result) => {
+        connection.query(insert_query, (err, result) => {
           if (err) throw err;
           console.log("---New User Created---");
           console.log(result.insertId);
