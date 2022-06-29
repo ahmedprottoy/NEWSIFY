@@ -1,6 +1,16 @@
 import React from "react";
 
+// import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 export default function Choosing() {
+  // const history = useHistory();
+
+  // const signUpPage = () => {
+  //   history.push("/SignUp");
+  // };
+  const navigate = useNavigate();
+  // navigate("/SignUp");
   return (
     <div className="choosing--main">
       <div className="choosing--banner">
@@ -9,12 +19,20 @@ export default function Choosing() {
         <img className="choosing--logo" src="images/student.png" alt="logo" />
       </div>
       <div className="choosing--buttons">
-        <button>
-          <img className="choosing--buttonlogo" src="images/signup2.png" />
+        <button onClick={() => navigate("/SignUp")}>
+          <img
+            className="choosing--buttonlogo"
+            src="images/signup2.png"
+            alt="signup"
+          />
           SIGN UP!
         </button>
-        <button>
-          <img className="choosing--buttonlogo" src="images/login.png" />
+        <button onClick={() => navigate("/LogIn")}>
+          <img
+            className="choosing--buttonlogo"
+            src="images/login.png"
+            alt="login"
+          />
           LOG IN
         </button>
       </div>

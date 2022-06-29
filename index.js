@@ -1,12 +1,14 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
+const cors = require("cors");
 const bcrypt = require("bcrypt");
 const generateAccessToken = require("./genAccessToken");
 const validToken = require("./validToken");
 
 require("dotenv").config();
 
+app.use(cors());
 // middleware setup
 app.use(express.json());
 
@@ -35,7 +37,7 @@ db.getConnection((err, connection) => {
 });
 
 // hashing passwords,signUp users
-app.post("/signUp", async (req, res) => {
+app.post("/signup", async (req, res) => {
   const { userName, firstName, lastName, password, email } = req.body;
   const hashPassword = await bcrypt.hash(password, 10);
 
@@ -62,13 +64,13 @@ app.post("/signUp", async (req, res) => {
       if (result.length != 0) {
         connection.release();
         console.log("---User Already Exists---");
-        res.send("User Already Exists");
+        res.send("User Already Exists With This Name");
       } else {
         connection.query(insert_query, (err, result) => {
           if (err) throw err;
           console.log("---New User Created---");
           console.log(result.insertId);
-          res.send("New User Created");
+          res.send("A New User Has Been Created");
         });
       }
     });
@@ -90,7 +92,7 @@ app.post("/login", (req, res) => {
       if (err) throw err;
       if (result.length == 0) {
         console.log("---User does not exist---");
-        res.send("User does not exist");
+        res.send("User Does Not Exist With This Name");
       } else {
         const hashPassword = result[0].password;
         const userID = result[0].userID;
@@ -101,10 +103,11 @@ app.post("/login", (req, res) => {
 
           const token = generateAccessToken(userID);
           // console.log(token);
-          res.send(`accessToken:${token}  ${userName} logged in successfully`);
+          // res.send(`accessToken:${token}  ${userName} logged in successfully`);
+          res.send(`Welcome ${userName} To NEWSIFY`);
         } else {
           console.log("---Password Incorrect----");
-          res.send("Password Incorrect");
+          res.send("Incorrect Password");
         }
       }
     });

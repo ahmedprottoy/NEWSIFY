@@ -3,18 +3,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 /* choosing design */
 
 .choosing--main {
-  background-color: rgb(211, 211, 211);
   width: 70%;
   height: 500px;
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   margin: 110px auto;
-  border: solid 2px #000;
+  border: solid 1px #000;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 15px;
 }
 .choosing--banner {
   width: 40%;
@@ -33,7 +32,7 @@
   align-items: center;
   flex-direction: column;
   padding: 20px;
-  border-left: 2px solid #000;
+  border-left: 1px solid #000;
 }
 .choosing--buttons > button {
   margin: 10px;
@@ -44,9 +43,92 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  box-shadow: 2px 5px #999;
+  /* box-shadow: 2px 5px #999;
+   */
 }
+
 .choosing--buttonlogo {
   width: 55px;
-  /* margin-left: 20px; */
+}
+
+/* signup page design */
+
+.form--container {
+  width: 70%;
+  height: 500px;
+  display: flex;
+  margin: 110px auto 50px auto;
+  border: solid 1px #000;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 15px;
+}
+
+.form--banner {
+  text-align: center;
+  width: 40%;
+  padding: 20px;
+  text-align: center;
+  margin: 80px auto;
+}
+.form--img {
+  width: 350px;
+}
+
+.form--main {
+  width: 40%;
+  margin: 50px 50px;
+  text-align: center;
+}
+
+input {
+  display: block;
+  padding: 15px;
+  width: 300px;
+  margin: 20px auto;
+  border: solid 1px #000;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.button-54 {
+  width: 150px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 2px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  /* position: relative; */
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
+
+.msg {
+  text-align: center;
+}
+
+/* log in page design */
+
+.form--main--login {
+  width: 40%;
+  margin: 130px auto;
+  text-align: center;
 }
