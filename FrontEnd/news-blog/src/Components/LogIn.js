@@ -51,7 +51,7 @@ export default function LogIn() {
             />
           </form>
 
-          <button className="button-54" onClick={login}>
+          <button type="submit" className="button-54" onClick={login}>
             Log In
           </button>
         </div>
