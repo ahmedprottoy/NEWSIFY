@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Quicksand", sans-serif;
+}
+
 /* choosing design */
 
 .choosing--main {
@@ -22,7 +26,7 @@
   margin: 100px auto;
 }
 .choosing--logo {
-  width: 180px;
+  width: 250px;
   margin-top: 20px;
 }
 .choosing--buttons {
@@ -43,8 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  /* box-shadow: 2px 5px #999;
-   */
+  font-family: "Quicksand", sans-serif;
 }
 
 .choosing--buttonlogo {
@@ -80,7 +83,7 @@
   text-align: center;
 }
 
-input {
+.form--input {
   display: block;
   padding: 15px;
   width: 300px;
@@ -131,4 +134,87 @@ input {
   width: 40%;
   margin: 130px auto;
   text-align: center;
+}
+
+/* navbar design */
+.navbar--container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.nav--logo {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.nav--option a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 50px;
+}
+
+.nav--search {
+  padding: 5px;
+  width: 150px;
+  margin-right: 30px;
+  border: solid 1px #000;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #fcfcfd;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395a;
+  cursor: pointer;
+  border: 1px solid #000;
+  display: inline-flex;
+  /* font-family: "JetBrains Mono", monospace; */
+  height: 28px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 16px;
+}
+
+.button-30:focus {
+  box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #d6d6e7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+.nav--button {
+  text-decoration: none;
 }

@@ -48,6 +48,7 @@ export default function SignUp() {
             <input
               type="text"
               autoComplete="off"
+              className="form--input"
               placeholder="User Name"
               name="userName"
               onChange={handleChange}
@@ -55,6 +56,7 @@ export default function SignUp() {
 
             <input
               type="text"
+              className="form--input"
               autoComplete="off"
               placeholder="First Name"
               name="firstName"
@@ -63,6 +65,7 @@ export default function SignUp() {
 
             <input
               type="text"
+              className="form--input"
               autoComplete="off"
               placeholder="Last Name"
               name="lastName"
@@ -71,6 +74,7 @@ export default function SignUp() {
 
             <input
               type="text"
+              className="form--input"
               autoComplete="off"
               placeholder="Email"
               name="email"
@@ -79,6 +83,7 @@ export default function SignUp() {
 
             <input
               type="password"
+              className="form--input"
               autoComplete="off"
               placeholder="Password"
               name="password"

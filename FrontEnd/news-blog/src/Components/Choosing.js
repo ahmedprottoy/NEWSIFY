@@ -16,7 +16,11 @@ export default function Choosing() {
       <div className="choosing--banner">
         <h3>WELCOME TO </h3>
         <h1>NEWSIFY</h1>
-        <img className="choosing--logo" src="images/student.png" alt="logo" />
+        <img
+          className="choosing--logo"
+          src="images/bannerface.png"
+          alt="logo"
+        />
       </div>
       <div className="choosing--buttons">
         <button onClick={() => navigate("/SignUp")}>

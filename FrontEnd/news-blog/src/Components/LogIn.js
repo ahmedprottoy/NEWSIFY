@@ -34,6 +34,7 @@ export default function LogIn() {
           <form>
             <input
               type="text"
+              className="form--input"
               autoComplete="off"
               placeholder="User Name"
               name="userName"
@@ -42,6 +43,7 @@ export default function LogIn() {
 
             <input
               type="password"
+              className="form--input"
               autoComplete="off"
               placeholder="Password"
               name="password"
