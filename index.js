@@ -70,7 +70,7 @@ app.post("/signup", async (req, res) => {
           if (err) throw err;
           console.log("---New User Created---");
           console.log(result.insertId);
-          res.send("A New User Has Been Created");
+          res.json({ msg: "A New User Has Been Created", nav: "ok" });
         });
       }
     });
@@ -92,7 +92,7 @@ app.post("/login", (req, res) => {
       if (err) throw err;
       if (result.length == 0) {
         console.log("---User does not exist---");
-        res.send("User Does Not Exist With This Name");
+        res.json({ user: "User Does Not Exist With This Name" });
       } else {
         const hashPassword = result[0].password;
         const userID = result[0].userID;
@@ -103,11 +103,15 @@ app.post("/login", (req, res) => {
 
           const token = generateAccessToken(userID);
           // console.log(token);
-          // res.send(`accessToken:${token}  ${userName} logged in successfully`);
-          res.send(`Welcome ${userName} To NEWSIFY`);
+          res.json({
+            accessToken: token,
+            user: `${userName} is logged in.`,
+            nav: "ok",
+          });
+          // res.send(`Welcome ${userName} To NEWSIFY`);
         } else {
           console.log("---Password Incorrect----");
-          res.send("Incorrect Password");
+          res.json({ user: `Invalid Password` });
         }
       }
     });
@@ -115,29 +119,50 @@ app.post("/login", (req, res) => {
 });
 
 // creating APIs
+//get all posts
 
-//show all users
-app.get("/show-users", validToken, async (req, res) => {
-  // const showUsers = "SELECT * FROM userInfo";
+app.get("/show-posts", async (req, res) => {
+  const showPosts = "SELECT * FROM blogPosts";
 
-  await db.query("SELECT * FROM userInfo", (err, rows) => {
+  await db.query(showPosts, (err, posts) => {
     if (err) {
       return res.status(404).send(err);
     }
-    return res.status(200).send(rows);
+    console.log("Posts being showed");
+    res.status(200).send(posts);
   });
 });
 //
 //
 //
 //
+//
+//
+//show all users
+// app.get("/show-users", validToken, async (req, res) => {
+//   // const showUsers = "SELECT * FROM userInfo";
+
+//   await db.query("SELECT * FROM userInfo", (err, rows) => {
+//     if (err) {
+//       return res.status(404).send(err);
+//     }
+//     return res.status(200).send(rows);
+//   });
+// });
+//
+//
+//
+//
 // show specific showUsers
 app.get("/show-user", validToken, async (req, res) => {
-  const { userName } = req.body;
+  // const { userName } = req.body;
+  const userID = req.user;
+  // console.log(userID);
 
-  const showUser = mysql.format("SELECT * FROM userInfo WHERE userName=?", [
-    userName,
-  ]);
+  const showUser = mysql.format(
+    "SELECT userName,firstName,lastName,email FROM userInfo WHERE userID=?",
+    [userID]
+  );
   await db.query(showUser, (err, result) => {
     if (err) {
       return res.status(404).send(err);
@@ -145,6 +170,27 @@ app.get("/show-user", validToken, async (req, res) => {
     return res.status(200).send(result);
   });
 });
+//
+//
+//
+//
+// user-post
+
+app.get("/user-post", validToken, async (req, res) => {
+  const userNO = req.user;
+  // console.log(userNO);
+  const userPost = mysql.format("SELECT * from blogPosts WHERE userID=?", [
+    userNO,
+  ]);
+  await db.query(userPost, (err, result) => {
+    if (err) {
+      return res.status(404).send(err);
+    }
+    return res.status(200).send(result);
+  });
+});
+//
+//
 //
 //
 //
@@ -179,26 +225,13 @@ app.post("/create-post", validToken, async (req, res) => {
 //
 //
 //
-//get all posts
-
-app.get("/show-posts", validToken, async (req, res) => {
-  const showPosts = "SELECT * FROM blogPosts";
-
-  await db.query(showPosts, (err, posts) => {
-    if (err) {
-      return res.status(404).send(err);
-    }
-    console.log("Posts being showed");
-    res.status(200).send(posts);
-  });
-});
 
 //
 //
 //
 //
 // get specific posts
-app.get("/show-specific-post", async (req, res) => {
+app.get("/show-specific-post", validToken, async (req, res) => {
   const { blogHeader, userName } = req.body;
 
   if (blogHeader != undefined) {
@@ -247,15 +280,13 @@ app.get("/show-specific-post", async (req, res) => {
 //
 // delete post
 
-app.delete("/delete-post", validToken, async (req, res) => {
+app.delete("/delete-post/:postNo", validToken, async (req, res) => {
   const userID = req.user;
-  const { postNo } = req.body;
-  // console.log(userID);
-
+  const postID = req.params.postNo;
   const deletePost = "DELETE FROM blogPosts WHERE userID =? AND postNo = ? ";
-  db.query(deletePost, [userID, postNo], (err, posts) => {
+  db.query(deletePost, [userID, postID], (err, posts) => {
     if (err) throw err;
-    res.send("post deleted");
+    res.send(posts);
   });
 });
 //

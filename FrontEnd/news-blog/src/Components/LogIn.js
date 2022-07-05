@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function LogIn() {
   const [loginData, setloginData] = useState({
     userName: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [loginStatus, setloginStatus] = useState("");
 
@@ -23,7 +26,19 @@ export default function LogIn() {
       userName: loginData.userName,
       password: loginData.password,
     }).then((response) => {
-      setloginStatus(response.data);
+      localStorage.setItem(
+        "accessToken",
+        // "Bearer " + response.data.accessToken
+        response.data.accessToken
+      );
+      // console.log(response.data.nav);
+      setloginStatus(response.data.user);
+
+      if (response.data.nav === "ok") {
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      }
     });
   };
 
@@ -47,8 +62,6 @@ export default function LogIn() {
               autoComplete="off"
               placeholder="Password"
               name="password"
-              minlength="8"
-              required
               onChange={handleChange}
             />
           </form>

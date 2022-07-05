@@ -7,8 +7,8 @@ export default function Navbar() {
 
       <div className="nav--option">
         <a href="/">Home</a>
-        <a href="#">Profile</a>
-        <a href="#">Create Post</a>
+        <a href="/profile">Profile</a>
+        <a href="/MyPost">My Posts</a>
       </div>
 
       <div className="nav--srl">

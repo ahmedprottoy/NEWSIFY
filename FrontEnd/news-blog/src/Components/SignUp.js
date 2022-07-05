@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ export default function SignUp() {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [signupStatus, setsignupStatus] = useState("");
   // console.log(formData);
@@ -30,7 +33,13 @@ export default function SignUp() {
       password: formData.password,
     }).then((response) => {
       // console.log(response.data);
-      setsignupStatus(response.data);
+      setsignupStatus(response.data.msg);
+
+      if (response.data.nav === "ok") {
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      }
     });
   };
 
