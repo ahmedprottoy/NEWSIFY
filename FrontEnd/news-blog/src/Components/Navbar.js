@@ -9,16 +9,11 @@ export default function Navbar() {
         <a href="/">Home</a>
         <a href="/profile">Profile</a>
         <a href="/MyPost">My Posts</a>
+        <a href="/CreatePost">Create Post</a>
+        <a href="/Search">Search</a>
       </div>
 
       <div className="nav--srl">
-        <input
-          type="text"
-          className="nav--search"
-          placeholder="  Search"
-          name="search"
-          autoComplete="off"
-        />
         <a href="/Choosing" className="nav--button">
           <button className="button-30">Register / Log In</button>
         </a>

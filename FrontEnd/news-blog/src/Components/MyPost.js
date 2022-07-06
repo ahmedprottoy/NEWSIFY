@@ -29,6 +29,7 @@ export default function MyPost() {
     axios
       .delete(`http://localhost:3001/delete-post/${postNo}`, config)
       .then((response) => {
+        console.log(response);
         getMyPost(
           myPost.filter((value) => {
             return value.postNo !== postNo;
@@ -36,6 +37,7 @@ export default function MyPost() {
         );
       });
   };
+
   if (myPost) {
     return myPost.map((post, index) => {
       return (

@@ -216,7 +216,10 @@ app.post("/create-post", validToken, async (req, res) => {
       if (err) throw err;
       const userN = result[0].userName;
       console.log("Post is created successfully");
-      res.send(`${userN} has created a post successfully`);
+      res.json({
+        status: "ok",
+        msg: `${userN} has created a post successfully`,
+      });
     });
   });
 });
@@ -231,10 +234,12 @@ app.post("/create-post", validToken, async (req, res) => {
 //
 //
 // get specific posts
-app.get("/show-specific-post", validToken, async (req, res) => {
+app.post("/show-specific-post", validToken, async (req, res) => {
   const { blogHeader, userName } = req.body;
 
-  if (blogHeader != undefined) {
+  // const { userName } = req.body;
+
+  if (blogHeader !== "") {
     await db.query(
       "SELECT * FROM blogPosts WHERE blogHeader=?",
       [blogHeader],
@@ -244,31 +249,45 @@ app.get("/show-specific-post", validToken, async (req, res) => {
         }
         if (post[0] != null) {
           console.log("Post is being showed");
-          res.status(200).send(post);
+          return res.status(200).send(post);
         } else {
-          return res.send("Post Not Found");
+          return res.json({
+            status: "no",
+            msg: "Sorry No Post Found According To Your Data...",
+          });
         }
       }
     );
   }
-
-  if (userName != undefined) {
+  if (userName !== "") {
     db.query(
       "SELECT userID FROM userInfo WHERE userName = ?",
       [userName],
       (err, userID) => {
         if (err) throw err;
-        const user = userID[0].userID;
 
-        db.query(
-          "SELECT * FROM blogPosts where userID = ?",
-          [user],
-          (err, posts) => {
-            if (err) throw err;
-            console.log("Posts are being showed");
-            res.send(posts);
-          }
-        );
+        if (userID.length === 0) {
+          return res.json({
+            status: "no",
+            msg: "Sorry User Doesn't Exist...",
+          });
+        } else {
+          const user = userID[0].userID;
+          db.query(
+            "SELECT * FROM blogPosts where userID = ?",
+            [user],
+            (err, posts) => {
+              if (err) throw err;
+              console.log("Posts are beingg showed");
+              if (posts[0] != null) {
+                console.log("Post is being showed");
+                return res.status(200).send(posts);
+              } else {
+                return res.send("Post Not Found");
+              }
+            }
+          );
+        }
       }
     );
   }

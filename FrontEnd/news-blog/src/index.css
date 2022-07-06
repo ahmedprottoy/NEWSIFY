@@ -352,3 +352,59 @@ body {
   box-shadow: #d6d6e7 0 3px 7px inset;
   transform: translateY(2px);
 }
+
+.MyPostUI--title {
+  margin: 20px 100px;
+}
+
+/* Create post design */
+
+.CreatePost--input {
+  display: block;
+  resize: none;
+  padding: 15px;
+  width: 500px;
+  margin: 20px 100px;
+  border: solid 1px #000;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.CreatePost--input2 {
+  display: block;
+  padding: 15px;
+  resize: none;
+  width: 500px;
+  height: 300px;
+  margin: 20px 100px;
+  border: solid 1px #000;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.CreatePost--header {
+  margin: 20px 100px;
+}
+.cpbut {
+  margin: 20px 250px;
+  width: 170px;
+  padding: 20px;
+}
+.CreatePost--status {
+  margin: 20px 100px;
+}
+
+/* search design*/
+
+.searcht {
+  height: 80px;
+}
+
+.Search--h {
+  margin: 30px 100px;
+}
+
+.search--r {
+  margin-top: 40px;
+}
