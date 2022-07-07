@@ -329,7 +329,7 @@ app.get("/updatePost/:postNo", validToken, async (req, res) => {
 });
 
 //2
-app.put("/update-post", validToken, async (req, res) => {
+app.post("/update-post", validToken, async (req, res) => {
   const { blogHeader, blogDescription } = req.body;
   const userID = req.user;
 
@@ -339,7 +339,7 @@ app.put("/update-post", validToken, async (req, res) => {
       [blogHeader, userID],
       (err, post) => {
         if (err) throw err;
-        res.send("Title is  updated");
+        res.send("Post Is  Updated");
       }
     );
   }
@@ -350,7 +350,7 @@ app.put("/update-post", validToken, async (req, res) => {
       [blogDescription, userID],
       (err, post) => {
         if (err) throw err;
-        res.send("blog is updated");
+        res.send("Post Is Updated");
       }
     );
   }

@@ -47,7 +47,7 @@ export default function MyPost() {
       return (
         <div className="post--container">
           <button
-            className="delete--button"
+            className="update--button"
             onClick={() => navigate("/Update", { state: { id: post.postNo } })}
           >
             Update

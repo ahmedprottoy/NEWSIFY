@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Update() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [updatePost, setUpdatePost] = useState([]);
   const [PostData, setPostData] = useState({
     blogHeader: "",
     blogDescription: "",
   });
-
-  console.log(PostData);
+  const [status, setStatus] = useState("");
 
   const postNo = location.state.id;
   // console.log(postNo);
@@ -38,9 +39,20 @@ export default function Update() {
       .get(`http://localhost:3001/updatePost/${postNo}`, config)
       .then((response) => {
         const upPost = response.data;
-        console.log(upPost);
+
         // getMyPost(undefined);
         setUpdatePost(upPost);
+      });
+  };
+
+  const UpdatingPost = () => {
+    axios
+      .post("http://localhost:3001/update-post", PostData, config)
+      .then((response) => {
+        setStatus(response.data);
+        setTimeout(() => {
+          navigate("/MyPost");
+        }, 3000);
       });
   };
 
@@ -49,6 +61,7 @@ export default function Update() {
       return (
         <div className="Update--container">
           {/* <p>{post.blogHeader}</p> */}
+          <h3 className="Search--h">Title : </h3>
           <textarea
             type="text"
             className="CreatePost--input"
@@ -58,6 +71,7 @@ export default function Update() {
             name="blogHeader"
             onChange={handleChange}
           />
+          <h3 className="Search--h">Description : </h3>
           <textarea
             type="text"
             className="CreatePost--input2 "
@@ -67,6 +81,14 @@ export default function Update() {
             name="blogDescription"
             onChange={handleChange}
           />
+          <button
+            type="submit"
+            className="button-30 cpbut"
+            onClick={UpdatingPost}
+          >
+            Update
+          </button>
+          <h1 className="Search--h"> {status}</h1>
         </div>
       );
     });
