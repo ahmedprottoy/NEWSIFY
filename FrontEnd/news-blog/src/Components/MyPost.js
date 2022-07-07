@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // import MyPostUI from "./MyPostUI";
 
 export default function MyPost() {
-  const [myPost, getMyPost] = useState();
+  const [myPost, getMyPost] = useState([]);
+  // const [updatePost, setUpdatePost] = useState([]);
 
   useEffect(() => {
     getAllUserPost();
   }, []);
+
+  const navigate = useNavigate();
 
   const config = {
     headers: { "x-access-token": localStorage.getItem("accessToken") },
@@ -29,7 +33,7 @@ export default function MyPost() {
     axios
       .delete(`http://localhost:3001/delete-post/${postNo}`, config)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         getMyPost(
           myPost.filter((value) => {
             return value.postNo !== postNo;
@@ -42,6 +46,12 @@ export default function MyPost() {
     return myPost.map((post, index) => {
       return (
         <div className="post--container">
+          <button
+            className="delete--button"
+            onClick={() => navigate("/Update", { state: { id: post.postNo } })}
+          >
+            Update
+          </button>
           <button
             className="delete--button"
             onClick={() => {

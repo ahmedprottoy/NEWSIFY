@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Home(props) {
   const { posts } = props;
+  console.log(posts);
 
   if (posts) {
     return posts.map((post, index) => {

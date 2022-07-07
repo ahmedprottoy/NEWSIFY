@@ -313,11 +313,27 @@ app.delete("/delete-post/:postNo", validToken, async (req, res) => {
 //
 //
 // post update
+//1
+app.get("/updatePost/:postNo", validToken, async (req, res) => {
+  const postID = req.params.postNo;
+  // console.log(userNO);
+  const userPost = mysql.format("SELECT * from blogPosts WHERE postNo=?", [
+    postID,
+  ]);
+  await db.query(userPost, (err, result) => {
+    if (err) {
+      return res.status(404).send(err);
+    }
+    return res.status(200).send(result);
+  });
+});
+
+//2
 app.put("/update-post", validToken, async (req, res) => {
   const { blogHeader, blogDescription } = req.body;
   const userID = req.user;
 
-  if (blogHeader != undefined) {
+  if (blogHeader !== "") {
     db.query(
       "UPDATE blogPosts SET blogHeader=? WHERE userID=?",
       [blogHeader, userID],
@@ -327,7 +343,8 @@ app.put("/update-post", validToken, async (req, res) => {
       }
     );
   }
-  if (blogDescription != undefined) {
+
+  if (blogDescription !== "") {
     db.query(
       "UPDATE blogPosts SET blogDescription=? WHERE userID=?",
       [blogDescription, userID],

@@ -2,13 +2,13 @@ import React from "react";
 import Choosing from "./Components/Choosing";
 import SignUp from "./Components/SignUp";
 import LogIn from "./Components/LogIn";
-// import Home from "./Components/Home";
 import Posts from "./Components/Posts";
 import Navbar from "./Components/Navbar";
 import Profile from "./Components/Profile";
 import CreatePost from "./Components/CreatePost";
 import MyPostUI from "./Components/MyPostUI";
 import Search from "./Components/Search";
+import Update from "./Components/Update";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
@@ -18,7 +18,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Posts />}></Route>
-
+          <Route path="/Update" element={<Update />}></Route>
           <Route path="/CreatePost" element={<CreatePost />}></Route>
           <Route path="/Profile" element={<Profile />}></Route>
           <Route path="/MyPost" element={<MyPostUI />}></Route>
