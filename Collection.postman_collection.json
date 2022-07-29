@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "08181773-6cf1-4b2a-bb7b-3e0be19d264d",
+		"name": "Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20447287"
+	},
+	"item": [
+		{
+			"name": "LogIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"cr7\",\r\n    \"password\":\"rma7890\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"Shahana65\",\r\n    \"firstName\":\"Shahana\",\r\n    \"lastName\":\"Parvin\",\r\n    \"password\":\"ammaabba\",\r\n    \"email\":\"shahahana.parvin@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/signUp",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"signUp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserPost",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.MTA.fDndLipaG_bHmVvkRvYrDsIv0Zp6fftPIEStgb9fJFY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/user-post",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user-post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllPost",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/show-posts",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"show-posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/create-post",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"create-post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SpecificPost",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.Nw.D8GiGLDFg0VKyUngCDHqyuQ-LZlLg2RQwnSNZljsmNE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"userName\":\"LeoMessi10\"\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/show-specific-post",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"show-specific-post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.Nw.D8GiGLDFg0VKyUngCDHqyuQ-LZlLg2RQwnSNZljsmNE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/show-user",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"show-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.Nw.D8GiGLDFg0VKyUngCDHqyuQ-LZlLg2RQwnSNZljsmNE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/delete-post/10",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"delete-post",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SelectPostToUpadate",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "updatePost",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
