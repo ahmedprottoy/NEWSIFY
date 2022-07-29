@@ -153,7 +153,7 @@ app.get("/show-posts", async (req, res) => {
 //
 //
 //
-// show specific showUsers
+// show specific showUser
 app.get("/show-user", validToken, async (req, res) => {
   // const { userName } = req.body;
   const userID = req.user;
@@ -174,7 +174,7 @@ app.get("/show-user", validToken, async (req, res) => {
 //
 //
 //
-// user-post
+// user-postt
 
 app.get("/user-post", validToken, async (req, res) => {
   const userNO = req.user;
@@ -233,11 +233,13 @@ app.post("/create-post", validToken, async (req, res) => {
 //
 //
 //
-// get specific posts
+// get specific pos
 app.post("/show-specific-post", validToken, async (req, res) => {
-  const { blogHeader, userName } = req.body;
+  let { blogHeader, userName } = req.body;
+  blogHeader = blogHeader || "";
+  userName = userName || "";
 
-  // const { userName } = req.body;
+  // const { userName } = req.body
 
   if (blogHeader !== "") {
     await db.query(
@@ -328,15 +330,17 @@ app.get("/updatePost/:postNo", validToken, async (req, res) => {
   });
 });
 
-//2
+//2.00
 app.post("/update-post", validToken, async (req, res) => {
-  const { blogHeader, blogDescription } = req.body;
-  const userID = req.user;
+  let { blogHeader, blogDescription } = req.body;
+  const { postNo } = req.body;
+
+  // const userID = req.user;
 
   if (blogHeader !== "") {
     db.query(
-      "UPDATE blogPosts SET blogHeader=? WHERE userID=?",
-      [blogHeader, userID],
+      "UPDATE blogPosts SET blogHeader=? WHERE postNo=?",
+      [blogHeader, postNo],
       (err, post) => {
         if (err) throw err;
         res.send("Post Is  Updated");
@@ -346,8 +350,8 @@ app.post("/update-post", validToken, async (req, res) => {
 
   if (blogDescription !== "") {
     db.query(
-      "UPDATE blogPosts SET blogDescription=? WHERE userID=?",
-      [blogDescription, userID],
+      "UPDATE blogPosts SET blogDescription=? WHERE postNo=?",
+      [blogDescription, postNo],
       (err, post) => {
         if (err) throw err;
         res.send("Post Is Updated");

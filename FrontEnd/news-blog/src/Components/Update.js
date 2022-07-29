@@ -6,15 +6,15 @@ import axios from "axios";
 export default function Update() {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const postNo = location.state.id;
   const [updatePost, setUpdatePost] = useState([]);
   const [PostData, setPostData] = useState({
     blogHeader: "",
     blogDescription: "",
+    postNo: postNo,
   });
   const [status, setStatus] = useState("");
 
-  const postNo = location.state.id;
   // console.log(postNo);
 
   const config = {
