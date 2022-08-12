@@ -1,5 +1,9 @@
 import React from "react";
 
+const logout = () => {
+  localStorage.removeItem("accessToken");
+};
+
 export default function Navbar() {
   return (
     <div className="navbar--container">
@@ -16,6 +20,9 @@ export default function Navbar() {
       <div className="nav--srl">
         <a href="/Choosing" className="nav--button">
           <button className="button-30">Register / Log In</button>
+          <button className="button-31" onClick={logout}>
+            LogOut
+          </button>
         </a>
       </div>
     </div>

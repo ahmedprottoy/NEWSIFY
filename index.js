@@ -107,6 +107,7 @@ app.post("/login", (req, res) => {
             accessToken: token,
             user: `${userName} is logged in.`,
             nav: "ok",
+            name: `${userName}`,
           });
           // res.send(`Welcome ${userName} To NEWSIFY`);
         } else {
