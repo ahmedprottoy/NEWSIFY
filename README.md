@@ -23,3 +23,8 @@ A full-stack sports-blogging platform that allows sports enthusiasts to publish 
 - User can read, post  about their preferred sports topic.
 - can search  for users or user posts. 
 
+
+## API Documentation
+
+The complete API Documentation can be found 
+[here](https://documenter.getpostman.com/view/20447287/2s8YswRXZZ)
